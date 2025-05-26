@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neurology Department | Boithathobelo Medical Clinic</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary: #2a6496;
+      --secondary: #007B8A;
+      --accent: #FFD700;
+      --light: #f0f8fa;
+      --dark: #1a2e4a;
+      --transition: all 0.4s ease-out;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    /* Hero Section */
+    .department-hero {
+      height: 60vh;
+      min-height: 500px;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('cardiology-img.jpg') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+    
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+    }
+    
+    /* Main Content Container */
+    .department-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    /* Section Styling */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary);
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+    
+    /* Service Cards */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    .card-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Technology Section */
+    .tech-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+      margin: 4rem 0;
+    }
+    
+    .tech-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .tech-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+    
+    .tech-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .tech-details {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .tech-details h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .feature-list li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+    
+    .feature-list li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--light);
+      border-radius: 10px;
+      margin: 4rem 0;
+    }
+    
+    .cta-section h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Premium Button */
+    .btn-premium {
+      display: inline-block;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-premium:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .btn-premium::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .btn-premium:hover::after {
+      opacity: 1;
+    }
+    
+    /* Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .tech-showcase {
+        flex-direction: column;
+      }
+    }
+
+    .back-to-services {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--light);
+  color: var(--primary);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--transition);
+  border: 1px solid var(--primary);
+}
+
+.back-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateX(-5px);
+}
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="department-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/3doctors.jpg');">
+    <div class="hero-content animate__animated animate__fadeIn">
+      <h1>Neurology Department</h1>
+      <p class="hero-subtitle">Advanced care for nervous system disorders</p>
+      <a href="#booking" class="btn-premium animate__animated animate__pulse animate__infinite animate__slower">
+        <i class="fas fa-brain"></i> Schedule Neuro Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- Back Button Top -->
+  <div class="back-to-services">
+    <a href="services.html" class="back-btn animate__animated animate__fadeInLeft">
+      <i class="fas fa-arrow-left"></i> Back to All Services
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="department-container">
+      <!-- Services Section -->
+      <section class="animate-on-scroll">
+        <div class="section-title">
+          <h2>Neurological Services</h2>
+          <p>Specialized diagnostics and treatment</p>
+        </div>
+        
+        <div class="service-grid">
+          <!-- EEG Testing -->
+          <div class="service-card">
+            <div class="card-image" style="background-image: url('Images/doctor-research.webp');"></div>
+            <div class="card-content">
+              <h3>EEG Testing</h3>
+              <p>Comprehensive brain wave analysis for seizure disorders.</p>
+              <a href="#booking" class="btn-premium" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+                Learn More
+              </a>
+            </div>
+          </div>
+          
+          <!-- EMG/NCS -->
+          <div class="service-card">
+            <div class="card-image" style="background-image: url('Images/Neurology-Header.webp');"></div>
+            <div class="card-content">
+              <h3>Nerve Conduction Studies</h3>
+              <p>Evaluation of peripheral nerve function and muscle activity.</p>
+              <a href="#booking" class="btn-premium" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+                Schedule Test
+              </a>
+            </div>
+          </div>
+          
+          <!-- Headache Clinic -->
+          <div class="service-card">
+            <div class="card-image" style="background-image: url('Images/Brain.jpeg');"></div>
+            <div class="card-content">
+              <h3>Headache Clinic</h3>
+              <p>Specialized treatment for migraines and chronic headaches.</p>
+              <a href="#booking" class="btn-premium" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">
+                Get Relief
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Technology Section -->
+      <section class="animate-on-scroll">
+        <div class="section-title">
+          <h2>Advanced Neurodiagnostics</h2>
+          <p>State-of-the-art diagnostic technology</p>
+        </div>
+        
+        <div class="tech-showcase">
+          <div class="tech-image">
+            <img src="Images/Neurology.webp" alt="Neurology imaging equipment" class="animate__animated animate__fadeInLeft">
+          </div>
+          <div class="tech-details animate__animated animate__fadeInRight">
+            <h3>Precision Diagnostics</h3>
+            <p>Our neurology department utilizes cutting-edge technology for accurate diagnosis of complex neurological conditions.</p>
+            
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> 3T MRI for high-resolution brain imaging</li>
+              <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Video EEG monitoring</li>
+              <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Quantitative EMG analysis</li>
+              <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Autonomic nervous system testing</li>
+              <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Neuropsychological assessments</li>
+            </ul>
+            
+            <a href="#booking" class="btn-premium">
+              <i class="fas fa-search"></i> Diagnostic Information
+            </a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- CTA Section -->
+      <section id="booking" class="cta-section animate-on-scroll">
+        <h2>Expert Neurological Care</h2>
+        <p>Our board-certified neurologists provide comprehensive evaluation and treatment for all neurological conditions.</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="booking.html" class="btn-premium">
+            <i class="fas fa-calendar-alt"></i> Schedule Consultation
+          </a>
+          <a href="tel:+26739245678" class="btn-premium" style="background: #e74c3c;">
+            <i class="fas fa-phone-alt"></i> Stroke Emergency
+          </a>
+          <a href="neuro-conditions.html" class="btn-premium" style="background: var(--dark);">
+            <i class="fas fa-book-medical"></i> Condition Guides
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Back Button Bottom -->
+  <div class="back-to-services">
+    <a href="services.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to All Services
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background: var(--primary); color: white; text-align: center; padding: 2rem;">
+    <div class="department-container">
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem;">
+        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2025 Boithathobelo Medical Clinic Neurology Department. All rights reserved.</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">
+        <i class="fas fa-exclamation-triangle"></i> Stroke symptoms? Call immediately: +267 392-456-79
+      </p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(el => observer.observe(el));
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

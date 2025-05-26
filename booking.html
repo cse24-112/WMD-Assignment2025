@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Appointment | Boithathobelo Center</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    body {
+      background: var(--gradient-background);
+      min-height: 100vh;
+      padding-top: 2rem;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      background: white;
+      color: var(--primary-color);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: var(--shadow-strong);
+      color: var(--accent-color);
+    }
+
+    .booking-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .booking-header h1 {
+      color: var(--primary-color);
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-header p {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .booking-steps {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      gap: 2rem;
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .step-number {
+      width: 35px;
+      height: 35px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-weight: bold;
+      transition: var(--transition);
+    }
+
+    .step.active {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .step.active .step-number {
+      background: var(--accent-color);
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-image {
+      transform: scale(1.05);
+    }
+
+    .service-content {
+      padding: 2rem;
+    }
+
+    .service-title {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .service-details {
+      color: var(--text-light);
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+
+    .service-details i {
+      color: var(--accent-color);
+      margin-right: 0.5rem;
+    }
+
+    .service-price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-price::before {
+      content: 'BWP';
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .calendar-section {
+      display: none;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      margin-top: 2rem;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .calendar-section.active {
+      display: block;
+    }
+
+    .calendar-section h2 {
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      text-align: center;
+    }
+
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .time-slot {
+      padding: 1rem;
+      text-align: center;
+      background: #f8f9fa;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .time-slot:hover:not(.unavailable) {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .time-slot.selected {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .time-slot.unavailable {
+      background: #f1f3f5;
+      color: #adb5bd;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .booking-summary {
+      display: none;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      margin-top: 2rem;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .booking-summary.active {
+      display: block;
+    }
+
+    .booking-summary h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e9ecef;
+      font-size: 1.1rem;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 2rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .btn-proceed {
+      display: block;
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn-proceed:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    @media (max-width: 768px) {
+      .booking-steps {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1rem;
+      }
+
+      .step {
+        margin: 0.5rem 0;
+      }
+
+      .booking-container {
+        padding: 0 1rem;
+      }
+
+      .back-btn {
+        top: 1rem;
+        left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a href="services.html" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Back to Services
+</a>
+
+<main class="booking-container">
+  <div class="booking-header">
+    <h1>Book Your Appointment</h1>
+    <p>Select a service, choose your preferred time, and confirm your booking</p>
+  </div>
+
+  <div class="booking-steps">
+    <div class="step active">
+      <div class="step-number">1</div>
+      <span>Select Service</span>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <span>Choose Date & Time</span>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <span>Confirm & Pay</span>
+    </div>
+  </div>
+
+  <div class="booking-grid" id="serviceSelection">
+    <script>
+      const services = [
+        {
+          name: "Pediatrics",
+          price: 450,
+          img: "Images/pediatrics.jpg",
+          description: "Specialized healthcare for children and adolescents",
+          duration: "45 minutes"
+        },
+        {
+          name: "Geriatrics",
+          price: 400,
+          img: "Images/geriatrics.jpeg",
+          description: "Comprehensive care for older adults",
+          duration: "60 minutes"
+        },
+        {
+          name: "Cardiology",
+          price: 1200,
+          img: "Images/cardiology.jpeg",
+          description: "Expert heart and cardiovascular care",
+          duration: "60 minutes"
+        },
+        {
+          name: "Neurology",
+          price: 1500,
+          img: "Images/Neurology.webp",
+          description: "Specialized care for neurological conditions",
+          duration: "60 minutes"
+        },
+        {
+          name: "Physical Therapy",
+          price: 600,
+          img: "Images/physical-therapy.jpg",
+          description: "Rehabilitation and movement therapy",
+          duration: "45 minutes"
+        },
+        {
+          name: "Consultation",
+          price: 350,
+          img: "Images/doctor-research.webp",
+          description: "General medical consultation",
+          duration: "30 minutes"
+        }
+      ];
+
+      document.write(services.map(service => `
+        <div class="service-card" onclick="selectService('${service.name}', ${service.price}, '${service.duration}')">
+          <img src="${service.img}" alt="${service.name}" class="service-image" loading="lazy">
+          <div class="service-content">
+            <h2 class="service-title">${service.name}</h2>
+            <div class="service-details">
+              <p>${service.description}</p>
+              <p><i class="far fa-clock"></i> Duration: ${service.duration}</p>
+            </div>
+            <div class="service-price">BWP ${service.price}</div>
+          </div>
+        </div>
+      `).join(''));
+    </script>
+  </div>
+
+  <div class="calendar-section" id="dateTimeSelection">
+    <h2>Select Date & Time</h2>
+    <input type="text" id="datePicker" placeholder="Select Date" class="form-control">
+    
+    <div class="time-slots" id="timeSlots">
+      <!-- Time slots will be populated dynamically -->
+    </div>
+  </div>
+
+  <div class="booking-summary" id="bookingSummary">
+    <h2>Booking Summary</h2>
+    <div class="summary-item">
+      <span>Service:</span>
+      <span id="summaryService"></span>
+    </div>
+    <div class="summary-item">
+      <span>Date:</span>
+      <span id="summaryDate"></span>
+    </div>
+    <div class="summary-item">
+      <span>Time:</span>
+      <span id="summaryTime"></span>
+    </div>
+    <div class="summary-item">
+      <span>Duration:</span>
+      <span id="summaryDuration"></span>
+    </div>
+    <div class="summary-item">
+      <span>Price:</span>
+      <span id="summaryPrice"></span>
+    </div>
+    
+    <button class="btn-proceed" onclick="proceedToPayment()">Proceed to Payment</button>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <img src="Images/logo.png" alt="Clinic Logo" class="footer-logo" loading="lazy">
+        <p>Your trusted healthcare partner</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="insurance.html">Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Plot 5413 Mafitlhakgosi, Tlokweng, Botswana</p>
+        <p><i class="fas fa-phone"></i> +267 392-456-78</p>
+        <p><i class="fas fa-envelope"></i> info@boithathobelo.com</p>
+      </div>
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Boithathobelo Medical Clinic. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  let selectedService = null;
+  let selectedDate = null;
+  let selectedTime = null;
+
+  // Initialize date picker
+  flatpickr("#datePicker", {
+    minDate: "today",
+    maxDate: new Date().fp_incr(30), // Allow booking up to 30 days in advance
+    disable: [
+      function(date) {
+        // Disable weekends
+        return date.getDay() === 0 || date.getDay() === 6;
+      }
+    ],
+    onChange: function(selectedDates, dateStr) {
+      selectedDate = dateStr;
+      generateTimeSlots();
+    }
+  });
+
+  function selectService(name, price, duration) {
+    selectedService = { name, price, duration };
+    document.getElementById('serviceSelection').style.display = 'none';
+    document.getElementById('dateTimeSelection').classList.add('active');
+    document.querySelector('.step:nth-child(2)').classList.add('active');
+  }
+
+  function generateTimeSlots() {
+    const timeSlotsContainer = document.getElementById('timeSlots');
+    timeSlotsContainer.innerHTML = '';
+    
+    // Generate time slots from 8 AM to 5 PM
+    for (let hour = 8; hour < 17; hour++) {
+      for (let minute of ['00', '30']) {
+        const timeString = `${hour}:${minute}`;
+        const isAvailable = Math.random() > 0.3; // Randomly determine availability
+        
+        const slot = document.createElement('div');
+        slot.className = `time-slot ${isAvailable ? '' : 'unavailable'}`;
+        slot.textContent = timeString;
+        
+        if (isAvailable) {
+          slot.onclick = () => selectTimeSlot(timeString);
+        }
+        
+        timeSlotsContainer.appendChild(slot);
+      }
+    }
+  }
+
+  function selectTimeSlot(time) {
+    selectedTime = time;
+    document.querySelectorAll('.time-slot').forEach(slot => {
+      slot.classList.remove('selected');
+    });
+    event.target.classList.add('selected');
+    
+    // Show booking summary
+    document.getElementById('dateTimeSelection').style.display = 'none';
+    document.getElementById('bookingSummary').classList.add('active');
+    document.querySelector('.step:nth-child(3)').classList.add('active');
+    
+    // Update summary
+    document.getElementById('summaryService').textContent = selectedService.name;
+    document.getElementById('summaryDate').textContent = selectedDate;
+    document.getElementById('summaryTime').textContent = selectedTime;
+    document.getElementById('summaryDuration').textContent = selectedService.duration;
+    document.getElementById('summaryPrice').textContent = `BWP ${selectedService.price}`;
+  }
+
+  function proceedToPayment() {
+    // Store booking details in session storage
+    sessionStorage.setItem('booking', JSON.stringify({
+      service: selectedService.name,
+      date: selectedDate,
+      time: selectedTime,
+      duration: selectedService.duration,
+      price: selectedService.price
+    }));
+    
+    // Redirect to payment page
+    window.location.href = 'payment.html';
+  }
+</script>
+
+</body>
+</html>

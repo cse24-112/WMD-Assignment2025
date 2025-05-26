@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Boithathobelo Center</title>
+  <link rel="stylesheet" href="assets/css/login.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <main class="login-container">
+    <img src="Images/logo.png" alt="Boithathobelo Logo" class="logo">
+    <h2>Welcome Back</h2>
+
+    <div class="social-login">
+      <button class="social-btn google-btn" onclick="handleGoogleLogin()">
+        <i class="fab fa-google"></i>
+        Continue with Google
+      </button>
+      <button class="social-btn facebook-btn" onclick="handleFacebookLogin()">
+        <i class="fab fa-facebook-f"></i>
+        Continue with Facebook
+      </button>
+    </div>
+
+    <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <input 
+          type="text" 
+          id="emailOrPhone" 
+          name="emailOrPhone" 
+          placeholder="Email address or Phone number"
+          required
+        >
+      </div>
+      
+      <div class="form-group">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Password"
+          required
+        >
+      </div>
+
+      <div class="forgot-password">
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+    </form>
+
+    <p class="signup-link">
+      Don't have an account? <a href="signup.html">Create Account</a>
+    </p>
+  </main>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const emailOrPhone = document.getElementById('emailOrPhone').value;
+      const password = document.getElementById('password').value;
+      const loginBtn = event.target.querySelector('.login-btn');
+      
+      // Add loading state
+      loginBtn.classList.add('loading');
+      
+      // Simulate API call
+      setTimeout(() => {
+        if (emailOrPhone && password) {
+          // Store login state
+          localStorage.setItem('isLoggedIn', 'true');
+          window.location.href = 'index.html';
+        } else {
+          alert('Please fill in all fields');
+          loginBtn.classList.remove('loading');
+        }
+      }, 1500);
+    }
+
+    function handleGoogleLogin() {
+      alert('Google login integration coming soon!');
+    }
+
+    function handleFacebookLogin() {
+      alert('Facebook login integration coming soon!');
+    }
+  </script>
+</body>
+</html>

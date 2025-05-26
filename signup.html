@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign up for Boithathobelo Center - Create your account">
+  <title>Sign Up | Boithathobelo Center</title>
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="signup-container">
+  <img src="Images/logo.png" alt="Boithathobelo Center Logo" class="logo">
+  <h2>Create Your Account</h2>
+  <p class="subtitle">Join our healthcare community and get access to personalized care services</p>
+
+  <div class="social-buttons">
+    <button class="google-btn" onclick="signUpWithGoogle()">
+      <i class="fab fa-google"></i> Continue with Google
+    </button>
+    <button class="facebook-btn" onclick="signUpWithFacebook()">
+      <i class="fab fa-facebook"></i> Continue with Facebook
+    </button>
+  </div>
+
+  <div class="divider">
+    <span>or sign up with email</span>
+  </div>
+
+  <form id="signupForm" action="/api/signup" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" id="csrf_token">
+    
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" 
+               pattern="^[a-zA-Z ]{2,50}$" required
+               aria-required="true">
+      </div>
+      <small class="error-message" id="fullNameError"></small>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" 
+               required aria-required="true">
+      </div>
+      <small class="error-message" id="emailError"></small>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <div class="input-group">
+        <i class="fas fa-phone"></i>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" 
+               pattern="^[0-9+]{10,15}$" required
+               aria-required="true">
+      </div>
+      <small class="error-message" id="phoneError"></small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" 
+               placeholder="Enter your password" required
+               aria-required="true"
+               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+        <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+          <i class="far fa-eye"></i>
+        </button>
+      </div>
+      <div class="password-strength">
+        <div class="strength-meter"></div>
+        <small class="strength-text">Password strength: <span>Weak</span></small>
+      </div>
+      <small class="password-requirements">
+        <ul>
+          <li><i class="fas fa-check"></i> At least 8 characters</li>
+          <li><i class="fas fa-check"></i> One uppercase letter</li>
+          <li><i class="fas fa-check"></i> One lowercase letter</li>
+          <li><i class="fas fa-check"></i> One number</li>
+          <li><i class="fas fa-check"></i> One special character</li>
+        </ul>
+      </small>
+      <small class="error-message" id="passwordError"></small>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <div class="password-input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirmPassword" name="confirmPassword" 
+               placeholder="Confirm your password" required
+               aria-required="true">
+        <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+          <i class="far fa-eye"></i>
+        </button>
+      </div>
+      <small class="error-message" id="confirmPasswordError"></small>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">
+        I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> and 
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
+      </label>
+      <small class="error-message" id="termsError"></small>
+    </div>
+
+    <button type="submit" id="submitBtn" class="submit-button">
+      <span class="button-text">Create Account</span>
+      <span class="loading-spinner hidden"></span>
+    </button>
+  </form>
+
+  <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('signupForm');
+  const passwordToggles = document.querySelectorAll('.toggle-password');
+  const passwordInput = document.getElementById('password');
+  const strengthMeter = document.querySelector('.strength-meter');
+  const strengthText = document.querySelector('.strength-text span');
+  
+  // Password visibility toggle
+  passwordToggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+      const input = this.previousElementSibling.previousElementSibling;
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('fa-eye');
+      this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+  });
+
+  // Password strength checker
+  passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    const strength = checkPasswordStrength(password);
+    updatePasswordStrength(strength);
+    updatePasswordRequirements(password);
+  });
+
+  function checkPasswordStrength(password) {
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (password.match(/[A-Z]/)) strength++;
+    if (password.match(/[a-z]/)) strength++;
+    if (password.match(/[0-9]/)) strength++;
+    if (password.match(/[^A-Za-z0-9]/)) strength++;
+    return strength;
+  }
+
+  function updatePasswordStrength(strength) {
+    const percentage = (strength / 5) * 100;
+    strengthMeter.style.width = `${percentage}%`;
+    
+    let strengthLabel = 'Weak';
+    let color = '#ff4444';
+    
+    if (strength >= 5) {
+      strengthLabel = 'Strong';
+      color = '#00C851';
+    } else if (strength >= 3) {
+      strengthLabel = 'Moderate';
+      color = '#ffbb33';
+    }
+    
+    strengthMeter.style.backgroundColor = color;
+    strengthText.textContent = strengthLabel;
+    strengthText.style.color = color;
+  }
+
+  function updatePasswordRequirements(password) {
+    const requirements = [
+      { regex: /.{8,}/, index: 0 },
+      { regex: /[A-Z]/, index: 1 },
+      { regex: /[a-z]/, index: 2 },
+      { regex: /[0-9]/, index: 3 },
+      { regex: /[^A-Za-z0-9]/, index: 4 }
+    ];
+
+    const checks = document.querySelectorAll('.password-requirements i');
+    requirements.forEach(req => {
+      const check = checks[req.index];
+      if (password.match(req.regex)) {
+        check.classList.remove('fa-times');
+        check.classList.add('fa-check');
+        check.style.color = '#00C851';
+      } else {
+        check.classList.remove('fa-check');
+        check.classList.add('fa-times');
+        check.style.color = '#ff4444';
+      }
+    });
+  }
+
+  // Form validation
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      const submitBtn = document.getElementById('submitBtn');
+      const buttonText = submitBtn.querySelector('.button-text');
+      const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+      
+      // Show loading state
+      buttonText.classList.add('hidden');
+      loadingSpinner.classList.remove('hidden');
+      submitBtn.disabled = true;
+
+      try {
+        // Simulate API call (replace with actual API endpoint)
+        await submitForm();
+        window.location.href = 'dashboard.html';
+      } catch (error) {
+        showError('An error occurred. Please try again.');
+      } finally {
+        // Reset button state
+        buttonText.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+      }
+    }
+  });
+
+  function validateForm() {
+    let isValid = true;
+    clearErrors();
+
+    // Validate full name
+    const fullName = document.getElementById('fullName');
+    if (!fullName.value.match(/^[a-zA-Z ]{2,50}$/)) {
+      showFieldError('fullName', 'Please enter a valid name (2-50 characters, letters only)');
+      isValid = false;
+    }
+
+    // Validate email
+    const email = document.getElementById('email');
+    if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      showFieldError('email', 'Please enter a valid email address');
+      isValid = false;
+    }
+
+    // Validate phone
+    const phone = document.getElementById('phone');
+    if (!phone.value.match(/^[0-9+]{10,15}$/)) {
+      showFieldError('phone', 'Please enter a valid phone number');
+      isValid = false;
+    }
+
+    // Validate password
+    const password = document.getElementById('password');
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!password.value.match(passwordPattern)) {
+      showFieldError('password', 'Password does not meet all requirements');
+      isValid = false;
+    }
+
+    // Validate confirm password
+    const confirmPassword = document.getElementById('confirmPassword');
+    if (password.value !== confirmPassword.value) {
+      showFieldError('confirmPassword', 'Passwords do not match');
+      isValid = false;
+    }
+
+    // Validate terms
+    const terms = document.getElementById('terms');
+    if (!terms.checked) {
+      showFieldError('terms', 'You must accept the terms and conditions');
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  function clearErrors() {
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(element => element.textContent = '');
+  }
+
+  function showFieldError(fieldId, message) {
+    const errorElement = document.getElementById(fieldId + 'Error');
+    if (errorElement) {
+      errorElement.textContent = message;
+    }
+  }
+
+  async function submitForm() {
+    // Replace with actual API call
+    return new Promise((resolve) => {
+      setTimeout(resolve, 1500);
+    });
+  }
+});
+
+// Social sign-up functions
+function signUpWithGoogle() {
+  // Implement Google Sign-up
+  alert('Google sign-up integration coming soon!');
+}
+
+function signUpWithFacebook() {
+  // Implement Facebook Sign-up
+  alert('Facebook sign-up integration coming soon!');
+}
+</script>
+
+</body>
+</html>

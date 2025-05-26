@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Boithathobelo Medical Clinic - Your trusted healthcare partner providing comprehensive medical services including cardiology, neurology, pediatrics, and more." />
+  <meta name="keywords" content="medical clinic, healthcare, cardiology, neurology, pediatrics, physical therapy, radiology, geriatrics" />
+  <meta name="theme-color" content="#2c3e50" />
+  <title>Boithathobelo Medical Clinic - Your Trusted Healthcare Partner</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="assets/css/styles.css" as="style" />
+  <link rel="preload" href="assets/js/main.js" as="script" />
+  <link rel="preload" href="assets/images/blur-hospital.jpg" as="image" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="contact-info">
+        <span><i class="fas fa-map-marker-alt"></i> Plot 5413 Mafitlhakgosi, Tlokweng</span>
+        <span><i class="fas fa-phone"></i> +267 392-456-78</span>
+        <span><i class="fas fa-envelope"></i> info@boithathobelo.com</span>
+      </div>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <img src="Images/logo.png" alt="Boithathobelo Medical Clinic Logo" class="logo" width="120" height="auto" />
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="insurance.html">Insurance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html" class="nav-button"><i class="fas fa-user"></i> Login</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" data-parallax="0.5">
+    <div class="hero-overlay"></div>
+    <div id="particles-js" class="hero-particles"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text-content fade-in-up">
+          <h1 class="gradient-text">Where Care Meets Compassion</h1>
+          <p class="hero-subtitle">Your trusted healthcare partner in Tlokweng</p>
+          
+          <div class="hero-quote fade-in-up" data-delay="0.4">
+            <div class="quote-card">
+              <i class="fas fa-quote-left quote-icon"></i>
+              <p>"Every heartbeat matters, every smile counts. We don't just treat patients, we care for family."</p>
+              <span class="quote-author">- Dr. Lioness, Medical Director</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-hours fade-in-up" data-delay="0.6">
+          <div class="hours-card">
+            <div class="hours-header">
+              <div class="header-icon">
+                <i class="fas fa-clock pulse-ring"></i>
+              </div>
+              <h2>Visit Us</h2>
+            </div>
+            
+            <div class="hours-grid">
+              <div class="hours-item active">
+                <div class="day-label">
+                  <i class="fas fa-sun"></i>
+                  <span>Weekdays</span>
+                </div>
+                <div class="time-label">7:00 AM - 9:00 PM</div>
+              </div>
+              
+              <div class="hours-item">
+                <div class="day-label">
+                  <i class="fas fa-cloud-sun"></i>
+                  <span>Saturday</span>
+                </div>
+                <div class="time-label">8:00 AM - 6:00 PM</div>
+              </div>
+              
+              <div class="hours-item">
+                <div class="day-label">
+                  <i class="fas fa-cloud"></i>
+                  <span>Sunday</span>
+                </div>
+                <div class="time-label">8:00 AM - 4:00 PM</div>
+              </div>
+              
+              <div class="hours-item emergency">
+                <div class="day-label">
+                  <i class="fas fa-phone-alt blink"></i>
+                  <span>Emergency</span>
+                </div>
+                <div class="time-label">24/7 Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator fade-in-up" data-delay="1">
+      <span>Discover More</span>
+      <i class="fas fa-chevron-down bounce"></i>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="welcome-section">
+    <div class="welcome-container">
+      <div class="welcome-content">
+        <h2 class="section-title fade-in-up">Welcome to Boithathobelo Medical Clinic</h2>
+        <div class="welcome-text fade-in-up delay-1">
+          <p class="mission-statement">"Dedicated to providing exceptional healthcare with compassion, innovation, and excellence."</p>
+          <p class="welcome-description">We combine cutting-edge technology with compassionate care to ensure the best possible outcomes for our patients.</p>
+        </div>
+        
+        <div class="welcome-features fade-in-up delay-2">
+          <div class="feature-item">
+            <i class="fas fa-heartbeat"></i>
+            <span>Patient-Centered Care</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-microscope"></i>
+            <span>Advanced Technology</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-user-md"></i>
+            <span>Expert Medical Team</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stats-card hover-lift fade-in-up delay-1">
+          <div class="stats-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stats-counter" data-value="15">15+</div>
+          <h3>Years of Excellence</h3>
+          <p>Serving with dedication since 2010</p>
+          <div class="stats-progress">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <div class="stats-card hover-lift fade-in-up delay-2">
+          <div class="stats-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stats-counter" data-value="50000">50k+</div>
+        <h3>Patients Served</h3>
+          <p>Trust built with every patient</p>
+          <div class="stats-progress">
+            <div class="progress-bar" style="width: 90%"></div>
+          </div>
+        </div>
+
+        <div class="stats-card hover-lift fade-in-up delay-3">
+          <div class="stats-icon">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <div class="stats-counter" data-value="20">20+</div>
+          <h3>Specialist Doctors</h3>
+          <p>Expert healthcare professionals</p>
+          <div class="stats-progress">
+            <div class="progress-bar" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <div class="stats-card hover-lift fade-in-up delay-4">
+          <div class="stats-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="stats-counter" data-value="25">25+</div>
+          <h3>Medical Awards</h3>
+          <p>Recognition of excellence</p>
+          <div class="stats-progress">
+            <div class="progress-bar" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome-cta fade-in-up delay-3">
+        <a href="booking.html" class="btn btn-primary">
+          <i class="fas fa-calendar-alt"></i>
+          Book an Appointment
+        </a>
+        <a href="about.html" class="btn btn-secondary">
+          <i class="fas fa-info-circle"></i>
+          Learn More About Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Departments Section -->
+  <section class="departments fade-in">
+    <div class="container">
+      <h2 class="section-title">Our Departments</h2>
+      <p class="section-subtitle">Specialized Healthcare Services for Your Needs</p>
+      
+      <div class="departments-grid" data-stagger="true" data-stagger-delay="0.1">
+        <a href="department-cardiology.html" class="department-card">
+          <div class="department-icon">
+          <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="department-content">
+          <h3>Cardiology</h3>
+            <p>Expert heart care with advanced cardiac treatments and diagnostics</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> Heart Disease Treatment</li>
+              <li><i class="fas fa-check-circle"></i> ECG & Stress Tests</li>
+              <li><i class="fas fa-check-circle"></i> Cardiac Rehabilitation</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="department-pediatrics.html" class="department-card">
+          <div class="department-icon">
+          <i class="fas fa-child"></i>
+          </div>
+          <div class="department-content">
+          <h3>Pediatrics</h3>
+            <p>Comprehensive healthcare for children from newborns to adolescents</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> Child Wellness</li>
+              <li><i class="fas fa-check-circle"></i> Vaccinations</li>
+              <li><i class="fas fa-check-circle"></i> Growth Monitoring</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="department-neurology.html" class="department-card">
+          <div class="department-icon">
+          <i class="fas fa-brain"></i>
+          </div>
+          <div class="department-content">
+          <h3>Neurology</h3>
+            <p>Specialized care for neurological conditions and disorders</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> Neurological Disorders</li>
+              <li><i class="fas fa-check-circle"></i> Brain Mapping</li>
+              <li><i class="fas fa-check-circle"></i> Stroke Treatment</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="department-geriatrics.html" class="department-card">
+          <div class="department-icon">
+          <i class="fas fa-user-clock"></i>
+          </div>
+          <div class="department-content">
+          <h3>Geriatrics</h3>
+            <p>Specialized healthcare for elderly patients</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> Senior Wellness Care</li>
+              <li><i class="fas fa-check-circle"></i> Chronic Disease Management</li>
+              <li><i class="fas fa-check-circle"></i> Memory Care Services</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="department-physical-therapy.html" class="department-card">
+          <div class="department-icon">
+            <i class="fas fa-walking"></i>
+          </div>
+          <div class="department-content">
+          <h3>Physical Therapy</h3>
+            <p>Rehabilitation and movement therapy services</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> Sports Rehabilitation</li>
+              <li><i class="fas fa-check-circle"></i> Post-Surgery Recovery</li>
+              <li><i class="fas fa-check-circle"></i> Pain Management</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="department-radiology.html" class="department-card">
+          <div class="department-icon">
+          <i class="fas fa-x-ray"></i>
+          </div>
+          <div class="department-content">
+          <h3>Radiology</h3>
+            <p>Advanced diagnostic imaging services</p>
+            <ul class="department-features">
+              <li><i class="fas fa-check-circle"></i> X-Ray & CT Scans</li>
+              <li><i class="fas fa-check-circle"></i> MRI Services</li>
+              <li><i class="fas fa-check-circle"></i> Ultrasound Imaging</li>
+            </ul>
+            <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Achievement Stats Section -->
+  <section class="achievements-section parallax-section">
+    <div class="achievements-overlay"></div>
+    <div class="container">
+      <div class="achievements-header">
+        <h2 class="section-title text-white fade-in-up">Our Achievements</h2>
+        <p class="section-subtitle text-white fade-in-up delay-1">Milestones that reflect our commitment to excellence in healthcare</p>
+      </div>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card hover-lift fade-in-up delay-1">
+          <div class="achievement-icon-wrapper">
+            <div class="achievement-icon">
+          <i class="fas fa-user-md"></i>
+            </div>
+            <svg class="circle-progress" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="85, 100"/>
+            </svg>
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-number" data-target="50" data-suffix="+">50</div>
+            <div class="achievement-label">Expert Doctors</div>
+            <div class="achievement-subtext">Specialized in Various Fields</div>
+          </div>
+          <div class="achievement-details">
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Board Certified</li>
+              <li><i class="fas fa-check-circle"></i> International Experience</li>
+              <li><i class="fas fa-check-circle"></i> Continuous Training</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="achievement-card hover-lift fade-in-up delay-2">
+          <div class="achievement-icon-wrapper">
+            <div class="achievement-icon">
+              <i class="fas fa-smile-beam"></i>
+            </div>
+            <svg class="circle-progress" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="95, 100"/>
+            </svg>
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-number" data-target="15000" data-suffix="+">15K +</div>
+            <div class="achievement-label">Happy Patients</div>
+            <div class="achievement-subtext">Annually</div>
+          </div>
+          <div class="achievement-details">
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Patient Satisfaction</li>
+              <li><i class="fas fa-check-circle"></i> Quality Care</li>
+              <li><i class="fas fa-check-circle"></i> Positive Outcomes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="achievement-card hover-lift fade-in-up delay-3">
+          <div class="achievement-icon-wrapper">
+            <div class="achievement-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <svg class="circle-progress" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="75, 100"/>
+            </svg>
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-number" data-target="15" data-suffix="+">15</div>
+            <div class="achievement-label">Years of Service</div>
+            <div class="achievement-subtext">Since 2010</div>
+          </div>
+          <div class="achievement-details">
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Consistent Growth</li>
+              <li><i class="fas fa-check-circle"></i> Community Impact</li>
+              <li><i class="fas fa-check-circle"></i> Trusted Care</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="achievement-card hover-lift fade-in-up delay-4">
+          <div class="achievement-icon-wrapper">
+            <div class="achievement-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <svg class="circle-progress" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="90, 100"/>
+            </svg>
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-number" data-target="25" data-suffix="+">25</div>
+            <div class="achievement-label">Awards Won</div>
+            <div class="achievement-subtext">For Excellence in Healthcare</div>
+          </div>
+          <div class="achievement-details">
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Quality Recognition</li>
+              <li><i class="fas fa-check-circle"></i> Service Excellence</li>
+              <li><i class="fas fa-check-circle"></i> Innovation Awards</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="achievements-cta fade-in-up delay-5">
+        <p class="cta-text">Experience the difference of award-winning healthcare</p>
+        <a href="booking.html" class="btn btn-light">Schedule a Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials fade-in">
+    <div class="container">
+      <h2>What Our Patients Say</h2>
+      <div class="testimonial-slideshow">
+        <div class="testimonial-card fade-in-up delay-1">
+          <div class="testimonial-header">
+            <img src="Images/lady1.png" alt="Sarah M." class="testimonial-avatar" loading="lazy">
+            <div>
+              <h3>Sarah M.</h3>
+              <div class="testimonial-rating">
+                ★★★★★
+              </div>
+            </div>
+          </div>
+          <p class="testimonial-content">"The care I received at Boithathobelo Medical Clinic was exceptional. Dr. Lioness and her team were not only professional but also incredibly compassionate. The new facilities are state-of-the-art, and I felt comfortable throughout my entire treatment."</p>
+        </div>
+
+        <div class="testimonial-card fade-in-up delay-2">
+          <div class="testimonial-header">
+            <img src="Images/man.jpg" alt="John D." class="testimonial-avatar" loading="lazy">
+            <div>
+              <h3>John D.</h3>
+              <div class="testimonial-rating">
+                ★★★★★
+              </div>
+            </div>
+          </div>
+          <p class="testimonial-content">"I've been coming to this clinic for the past year, and the level of care is consistently outstanding. The pediatric department, in particular, has been amazing with my children. Dr. Pitse has a wonderful way with kids!"</p>
+        </div>
+
+        <div class="testimonial-card fade-in-up delay-3">
+          <div class="testimonial-header">
+            <img src="Images/lady2.avif" alt="Maria K." class="testimonial-avatar" loading="lazy">
+            <div>
+              <h3>Maria K.</h3>
+              <div class="testimonial-rating">
+                ★★★★★
+              </div>
+            </div>
+          </div>
+          <p class="testimonial-content">"The cardiology department under Dr. Ebuu is world-class. They detected and treated my heart condition early, and their follow-up care has been impeccable. The new online booking system makes scheduling appointments so convenient!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Contact Section -->
+  <section class="emergency-contact fade-in">
+    <div class="container">
+      <div class="emergency-content">
+        <h2>24/7 Emergency Care</h2>
+        <p>For medical emergencies, please call our emergency hotline:</p>
+        <div class="emergency-number">
+          <i class="fas fa-phone-alt"></i>
+          <span>+267 392-456-78</span>
+        </div>
+        <p class="emergency-note">Our emergency team is available 24/7 to provide immediate medical assistance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <img src="Images/logo.png" alt="Boithathobelo Medical Clinic Logo" class="footer-logo" width="150" height="auto" />
+          <p>Your trusted healthcare partner since 2010</p>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Plot 5413 Mafitlhakgosi, Tlokweng</p>
+          <p><i class="fas fa-phone"></i> +267 392-456-78</p>
+          <p><i class="fas fa-envelope"></i> info@boithathobelo.com</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="doctors.html">Our Doctors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Boithathobelo Medical Clinic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      
+      menuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
+

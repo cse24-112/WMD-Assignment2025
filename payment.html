@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | Boithathobelo Center</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    body {
+      background: var(--gradient-background);
+      min-height: 100vh;
+      padding-top: 2rem;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      background: white;
+      color: var(--primary-color);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: var(--shadow-strong);
+      color: var(--accent-color);
+    }
+
+    .payment-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .payment-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .payment-header h1 {
+      color: var(--primary-color);
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-header p {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    .booking-summary {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      height: fit-content;
+    }
+
+    .booking-summary h2 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .booking-summary h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e9ecef;
+      font-size: 1.1rem;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .payment-form {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .payment-form h2 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .payment-form h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .payment-method {
+      background: white;
+      padding: 1.5rem;
+      border: 2px solid #e9ecef;
+      border-radius: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .payment-method:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .payment-method.selected {
+      border-color: var(--accent-color);
+      background: rgba(52, 152, 219, 0.1);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .payment-method i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .payment-method.selected i {
+      color: var(--accent-color);
+    }
+
+    .payment-method div {
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: #f8f9fa;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+    }
+
+    .btn-pay {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 2rem;
+    }
+
+    .btn-pay:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      color: var(--text-light);
+      font-size: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .secure-badge i {
+      color: var(--success-color);
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-container {
+        padding: 0 1rem;
+      }
+
+      .back-btn {
+        top: 1rem;
+        left: 1rem;
+      }
+
+      .payment-header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a href="booking.html" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Back to Booking
+</a>
+
+<main class="payment-container">
+  <div class="payment-header">
+    <h1>Complete Your Payment</h1>
+    <p>Secure payment for your medical appointment</p>
+  </div>
+
+  <div class="payment-grid">
+    <div class="booking-summary">
+      <h2>Booking Summary</h2>
+      <div id="summaryDetails">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+
+    <div class="payment-form">
+      <h2>Payment Details</h2>
+      
+      <div class="payment-methods">
+        <div class="payment-method" onclick="selectPaymentMethod('card')">
+          <i class="fas fa-credit-card"></i>
+          <div>Card</div>
+        </div>
+        <div class="payment-method" onclick="selectPaymentMethod('insurance')">
+          <i class="fas fa-hospital-user"></i>
+          <div>Insurance</div>
+        </div>
+        <div class="payment-method" onclick="selectPaymentMethod('orange')">
+          <i class="fas fa-mobile-alt"></i>
+          <div>Orange Money</div>
+        </div>
+      </div>
+
+      <form id="paymentForm" onsubmit="return processPayment(event)">
+        <div id="cardPaymentFields">
+          <div class="form-group">
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" id="cardName" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" class="form-control" required pattern="[0-9]{16}" placeholder="1234 5678 9012 3456">
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label for="expiryDate">Expiry Date</label>
+              <input type="text" id="expiryDate" class="form-control" required placeholder="MM/YY">
+            </div>
+            <div>
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" class="form-control" required pattern="[0-9]{3,4}" placeholder="123">
+            </div>
+          </div>
+        </div>
+
+        <div id="insuranceFields" style="display: none;">
+          <div class="form-group">
+            <label for="insuranceProvider">Insurance Provider</label>
+            <select id="insuranceProvider" class="form-control" required>
+              <option value="">Select Provider</option>
+              <option value="pula">Pula Medical Aid</option>
+              <option value="bomaid">Bomaid</option>
+              <option value="bpomas">BPOMAS</option>
+              <option value="cigna">Cigna Global</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="policyNumber">Policy Number</label>
+            <input type="text" id="policyNumber" class="form-control" required>
+          </div>
+        </div>
+
+        <div id="orangeMoneyFields" style="display: none;">
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" class="form-control" required placeholder="+267 ">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-pay">
+          <i class="fas fa-lock"></i> Pay Securely
+        </button>
+
+        <div class="secure-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>Your payment is secure and encrypted</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Load booking details from session storage
+  window.onload = function() {
+    const booking = JSON.parse(sessionStorage.getItem('booking'));
+    if (!booking) {
+      window.location.href = 'booking.html';
+      return;
+    }
+
+    const summaryHTML = `
+      <div class="summary-item">
+        <span>Service:</span>
+        <span>${booking.service}</span>
+      </div>
+      <div class="summary-item">
+        <span>Date:</span>
+        <span>${booking.date}</span>
+      </div>
+      <div class="summary-item">
+        <span>Time:</span>
+        <span>${booking.time}</span>
+      </div>
+      <div class="summary-item">
+        <span>Duration:</span>
+        <span>${booking.duration}</span>
+      </div>
+      <div class="summary-item">
+        <span>Amount:</span>
+        <span>BWP ${booking.price}</span>
+      </div>
+    `;
+    
+    document.getElementById('summaryDetails').innerHTML = summaryHTML;
+  };
+
+  function selectPaymentMethod(method) {
+    // Reset all payment methods
+    document.querySelectorAll('.payment-method').forEach(el => {
+      el.classList.remove('selected');
+    });
+    
+    // Hide all payment fields
+    document.getElementById('cardPaymentFields').style.display = 'none';
+    document.getElementById('insuranceFields').style.display = 'none';
+    document.getElementById('orangeMoneyFields').style.display = 'none';
+    
+    // Show selected payment fields
+    document.getElementById(`${method}PaymentFields`).style.display = 'block';
+    
+    // Highlight selected payment method
+    event.currentTarget.classList.add('selected');
+  }
+
+  function processPayment(event) {
+    event.preventDefault();
+    
+    // Here you would typically integrate with a payment gateway
+    // For demo purposes, we'll just show a success message
+    alert('Payment processed successfully! You will receive a confirmation email shortly.');
+    
+    // Clear session storage
+    sessionStorage.removeItem('booking');
+    
+    // Redirect to confirmation page
+    window.location.href = 'index.html';
+  }
+</script>
+
+</body>
+</html>
